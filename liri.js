@@ -7,12 +7,7 @@ var request = require('request');
 var fs = require('fs');
 
 var arg = "";
-/*for (var i = 3; i < process.argv.length; i++) {
-	arg += process.argv[i];
-	if (i < process.argv.length - 1) {
-		arg += " ";
-	}
-};*/
+
 arg = process.argv[3];
 
 parseCommand(process.argv[2], arg);
@@ -51,7 +46,7 @@ function parseCommand(command, arg) {
 function getTweets() {
 	console.log("Please wait while I find your tweets.\n");
 	var twitter = new Twitter(keys.twitterKeys);
-	twitter.get('statuses/home_timeline', function(error, tweets, response) {
+	twitter.get('statuses/user_timeline', function(error, tweets, response) {
 		if (tweets.length < 1) {
 			console.log("I couldn't find any tweets from your account. Try again after you've tweeted something.");
 			return;
